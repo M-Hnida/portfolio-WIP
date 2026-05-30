@@ -4,10 +4,13 @@
 	import Footer from '$lib/components/Footer.svelte';
 </script>
 
-<div style="min-height: 100vh; display: flex; flex-direction: column; background-color: var(--color-background);">
+<div class="hero-bg"></div>
+<div class="vignette" style="position: fixed; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.8) 100%);"></div>
+
+<div class="app-layout">
 	<Navigation />
-	<main style="flex: 1; width: 100%;">
+	<main class="main-content">
 		<slot />
+		<Footer />
 	</main>
-	<Footer />
 </div>

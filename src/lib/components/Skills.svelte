@@ -7,7 +7,7 @@
 			items: [
 				{ name: "Python", level: 5 },
 				{ name: "C#", level: 3 },
-				{ name: "C++", level: 4 },
+				{ name: "C++", level: 3 },
 				{ name: "PHP", level: 3 },
 				{ name: "HTML", level: 4 },
 				{ name: "CSS", level: 2 },
@@ -16,39 +16,42 @@
 			],
 		},
 		{
-			category: "IDE",
+			category: "IDE & OUTILS",
 			items: [
 				{ name: "VS Code", level: 5 },
 				{ name: "Visual Studio", level: 4 },
-				{ name: "Zed", level: 3 },
+				{ name: "Zed", level: 2 },
+				{ name: "PyCharm", level: 3 },
 				{ name: "Netbeans", level: 2 },
 				{ name: "Eclipse", level: 2 },
-				{ name: "PyCharm", level: 3 },
 			],
 		},
 		{
 			category: "SGBD",
 			items: [
 				{ name: "MySQL", level: 4 },
-				{ name: "PostgreSQL", level: 3 },
+				{ name: "PostgreSQL", level: 4 },
 				{ name: "MongoDB", level: 3 },
+				{ name: "Redis", level: 2 }
 			],
 		},
 		{
 			category: "CMS",
-			items: [{ name: "WordPress", level: 4 }],
+			items: [{ name: "WordPress", level: 4 },
+				{ name: "Directus", level: 2 }
+			],
 		},
 		{
 			category: "QUALITÉ LOGICIELLE",
 			items: [
-				{ name: "Normes (KISS, DRY, SOLID)", level: 4 },
-				{ name: "Tests unitaires", level: 3 },
-				{ name: "Tests fonctionnels", level: 3 },
-				{ name: "Analyse de code (Sonarlint)", level: 4 },
+				{ name: "Normes (KISS, DRY, SOLID)", level: 5 },
+				{ name: "Tests unitaires", level: 5 },
+				{ name: "Tests fonctionnels", level: 5 },
+				{ name: "Analyse (Sonarlint)", level: 4 },
 			],
 		},
 		{
-			category: "MÉTHODES DE CONCEPTION",
+			category: "CONCEPTION",
 			items: [
 				{ name: "Merise/2", level: 4 },
 				{ name: "UML", level: 3 },
@@ -56,22 +59,57 @@
 		},
 		{
 			category: "TRAVAIL COLLABORATIF",
-			items: [{ name: "GitHub (push, pull request...)", level: 4 }],
+			items: [{ name: "GitHub", level: 4 }],
 		},
-	].map((cat) => ({
-		...cat,
-		items: cat.items.sort((a, b) => b.level - a.level),
-	}));
+	];
+
+	const col1 = [
+		skills.find((s) => s.category === "LANGAGES"),
+		skills.find((s) => s.category === "SGBD"),
+		skills.find((s) => s.category === "QUALITÉ LOGICIELLE"),
+	].filter(Boolean) as typeof skills;
+
+	const col2 = [
+		skills.find((s) => s.category === "IDE & OUTILS"),
+		skills.find((s) => s.category === "CMS"),
+		skills.find((s) => s.category === "CONCEPTION"),
+		skills.find((s) => s.category === "TRAVAIL COLLABORATIF"),
+	].filter(Boolean) as typeof skills;
 </script>
 
-<section id="skills" class="skills">
-	<div class="container">
-		<h2 class="title" use:reveal>
-			Compétences & <span class="accent">Technologies</span>
-		</h2>
-		<div class="skills-grid">
-			{#each skills as cat, i}
-				<article class="skill-card" use:reveal={{ delay: i * 90 }}>
+<div id="skills">
+	<h2 class="section-title" use:reveal>
+		Compétences & <span class="accent">Technologies</span>
+	</h2>
+	<div class="skills-columns">
+		<div class="skills-col">
+			{#each col1 as cat, i}
+				<article class="skill-card" use:reveal={{ delay: i * 80 }}>
+					<div class="card-header">
+						<h3 class="cat-title">{cat.category}</h3>
+						<div class="cat-line"></div>
+					</div>
+					<div class="tags">
+						{#each cat.items as item}
+							<div class="tag" title="Niveau: {item.level}/5">
+								<span>{item.name}</span>
+								<div class="level-indicator">
+									{#each Array.from({ length: 5 }) as _, i}
+										<div
+											class="dot"
+											class:active={i < item.level}
+										></div>
+									{/each}
+								</div>
+							</div>
+						{/each}
+					</div>
+				</article>
+			{/each}
+		</div>
+		<div class="skills-col">
+			{#each col2 as cat, i}
+				<article class="skill-card" use:reveal={{ delay: (i + 3) * 80 }}>
 					<div class="card-header">
 						<h3 class="cat-title">{cat.category}</h3>
 						<div class="cat-line"></div>
@@ -95,58 +133,47 @@
 			{/each}
 		</div>
 	</div>
-</section>
+</div>
 
 <style>
-	.skills {
-		padding: 6rem 0;
-		background-color: var(--color-surface);
-		position: relative;
-	}
-
-	.container {
-		max-width: 80rem;
-		margin: 0 auto;
-		padding: 0 1.5rem;
-		position: relative;
-		z-index: 1;
-	}
-
-	.title {
+	.section-title {
 		font-family: var(--font-heading);
-		font-size: clamp(2rem, 5vw, 3rem);
-		text-align: center;
-		margin-bottom: 4rem;
+		font-size: 1.75rem;
+		margin-bottom: 2rem;
 		color: var(--color-text);
-		letter-spacing: -0.02em;
-		visibility: hidden;
+		font-weight: 600;
 	}
 
 	.accent {
-		color: #d4af37;
-		background: linear-gradient(135deg, #d4af37 0%, #f3e5ab 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
+		color: var(--color-primary);
 	}
 
-	.skills-grid {
+	.skills-columns {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-		gap: 2rem;
-		align-items: start;
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+	}
+
+	@media (min-width: 640px) {
+		.skills-columns {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	.skills-col {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
 	}
 
 	.skill-card {
 		background: rgba(255, 255, 255, 0.02);
 		backdrop-filter: blur(12px);
 		-webkit-backdrop-filter: blur(12px);
-		border: 1px solid rgba(255, 255, 255, 0.06);
-		border-radius: 1rem;
-		padding: 2rem;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+		padding: 1.5rem;
 		transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-		visibility: hidden;
-		height: 100%;
 		display: flex;
 		flex-direction: column;
 		position: relative;
@@ -172,8 +199,8 @@
 
 	.skill-card:hover {
 		border-color: rgba(212, 168, 83, 0.3);
-		transform: translateY(-5px);
-		box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+		transform: translateY(-3px);
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 		background: rgba(255, 255, 255, 0.03);
 	}
 
@@ -184,15 +211,15 @@
 	.card-header {
 		display: flex;
 		align-items: center;
-		gap: 1rem;
-		margin-bottom: 1.5rem;
+		gap: 0.75rem;
+		margin-bottom: 1.25rem;
 	}
 
 	.cat-title {
 		font-family: var(--font-heading);
-		font-size: 1.1rem;
+		font-size: 0.95rem;
 		color: #e0e0e0;
-		letter-spacing: 0.1em;
+		letter-spacing: 0.08em;
 		margin: 0;
 		font-weight: 600;
 	}
@@ -202,7 +229,7 @@
 		height: 1px;
 		background: linear-gradient(
 			90deg,
-			rgba(212, 168, 83, 0.3),
+			rgba(212, 168, 83, 0.25),
 			transparent
 		);
 	}
@@ -210,36 +237,33 @@
 	.tags {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.6rem;
+		gap: 0.5rem;
 	}
 
 	.tag {
 		display: flex;
 		align-items: center;
-		gap: 0.6rem;
-		font-size: 0.85rem;
+		gap: 0.5rem;
+		font-size: 0.8rem;
 		color: #a0a0a0;
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		padding: 0.35rem 0.85rem;
-		border-radius: 2rem;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		padding: 0.3rem 0.75rem;
+		border-radius: var(--radius-sm);
 		transition: all 0.3s ease;
-		background: rgba(0, 0, 0, 0.2);
-		letter-spacing: 0.02em;
+		background: rgba(0, 0, 0, 0.25);
 		cursor: default;
 	}
 
 	.tag:hover {
-		border-color: #d4af37;
+		border-color: var(--color-primary);
 		color: #ffffff;
-		background: rgba(212, 168, 83, 0.15);
-		transform: translateY(-2px);
-		box-shadow: 0 4px 12px rgba(212, 168, 83, 0.1);
+		background: rgba(212, 168, 83, 0.12);
+		transform: translateY(-1px);
 	}
 
 	.level-indicator {
 		display: flex;
-		gap: 3px;
-		margin-top: 1px;
+		gap: 2px;
 	}
 
 	.dot {
@@ -252,21 +276,11 @@
 
 	.dot.active {
 		background: rgba(212, 168, 83, 0.7);
-		box-shadow: 0 0 4px rgba(212, 168, 83, 0.4);
+		box-shadow: 0 0 3px rgba(212, 168, 83, 0.4);
 	}
 
 	.tag:hover .dot.active {
-		background: #d4af37;
-		box-shadow: 0 0 6px rgba(212, 168, 83, 0.8);
-	}
-
-	@media (max-width: 768px) {
-		.skills-grid {
-			grid-template-columns: 1fr;
-		}
-
-		.skills {
-			padding: 4rem 0;
-		}
+		background: var(--color-primary);
+		box-shadow: 0 0 5px rgba(212, 168, 83, 0.8);
 	}
 </style>

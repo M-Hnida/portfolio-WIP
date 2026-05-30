@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { MapPin, Mail, Link, Code2 } from "@lucide/svelte";
+
 	let message = "";
 
 	function handleSubmit(e: Event) {
@@ -13,33 +15,32 @@
 	}
 </script>
 
-<section id="contact" class="contact">
-	<div class="container">
-		<div class="contact-header">
-			<h2 class="title">Me Contacter</h2>
-			<p class="subtitle">
-				Disponible pour échanger autour d'un projet, d'un stage ou d'une
-				opportunité en développement backend, applications desktop, data
-				science ou machine learning.
-			</p>
-		</div>
+<section id="contact" class="section-card">
+	<div class="contact-header">
+		<h2 class="section-title">Me Contacter</h2>
+		<p class="subtitle">
+			Disponible pour échanger autour d'un projet, d'un stage ou d'une
+			opportunité en développement backend, applications desktop, data
+			science ou machine learning.
+		</p>
+	</div>
 
 		<div class="contact-content">
 			<div class="info-card">
 				<h3>Informations</h3>
 				<ul class="info-list">
 					<li>
-						<span class="icon">📍</span>
+						<span class="icon"><MapPin size={18} /></span>
 						<span>Miramas, France</span>
 					</li>
 					<li>
-						<span class="icon">📧</span>
+						<span class="icon"><Mail size={18} /></span>
 						<a href="mailto:simowgoat@gmail.com"
 							>simowgoat@gmail.com</a
 						>
 					</li>
 					<li>
-						<span class="icon">🔗</span>
+						<span class="icon"><Link size={18} /></span>
 						<a
 							href="https://www.linkedin.com/in/mohammed-h-161110360/"
 							target="_blank"
@@ -47,7 +48,7 @@
 						>
 					</li>
 					<li>
-						<span class="icon">💻</span>
+						<span class="icon"><Code2 size={18} /></span>
 						<a
 							href="https://github.com/M-Hnida"
 							target="_blank"
@@ -76,37 +77,24 @@
 				</form>
 			</div>
 		</div>
-	</div>
 </section>
 
 <style>
-	.contact {
-		padding: 4rem 0;
-		background-color: var(--color-surface);
-	}
-
-	.container {
-		max-width: 75rem;
-		margin: 0 auto;
-		padding: 0 1.5rem;
-	}
-
 	.contact-header {
-		text-align: center;
-		margin-bottom: 2.5rem;
+		margin-bottom: 2rem;
 	}
 
-	.title {
+	.section-title {
 		font-family: var(--font-heading);
-		font-size: clamp(2rem, 5vw, 3rem);
+		font-size: 1.75rem;
 		color: var(--color-text);
-		margin-bottom: 1rem;
+		margin-bottom: 0.5rem;
+		font-weight: 600;
 	}
 
 	.subtitle {
 		color: var(--color-text-muted);
-		max-width: 600px;
-		margin: 0 auto;
+		font-size: 0.95rem;
 		line-height: 1.6;
 	}
 
@@ -125,7 +113,7 @@
 	.info-card {
 		background: rgba(255, 255, 255, 0.02);
 		border: 1px solid var(--color-border);
-		border-radius: 1rem;
+		border-radius: var(--radius-md);
 		padding: 1.5rem;
 		height: fit-content;
 	}
@@ -154,7 +142,9 @@
 	}
 
 	.icon {
-		font-size: 1.25rem;
+		display: inline-flex;
+		align-items: center;
+		color: var(--color-primary);
 	}
 
 	.info-list a {
@@ -170,7 +160,7 @@
 	.form-card {
 		background: rgba(255, 255, 255, 0.02);
 		border: 1px solid var(--color-border);
-		border-radius: 1rem;
+		border-radius: var(--radius-md);
 		padding: 1.5rem;
 	}
 
@@ -191,7 +181,7 @@
 		width: 100%;
 		background: rgba(0, 0, 0, 0.2);
 		border: 1px solid var(--color-border);
-		border-radius: 0.5rem;
+		border-radius: var(--radius-sm);
 		padding: 1rem;
 		color: var(--color-text);
 		font-family: inherit;
@@ -216,10 +206,10 @@
 		padding: 0.875rem 1rem;
 		font-weight: 600;
 		font-size: 1rem;
-		background: linear-gradient(135deg, #d4af37 0%, #c0c0c0 100%);
+		background: var(--color-primary);
 		color: #050505;
 		border: none;
-		border-radius: 0.5rem;
+		border-radius: var(--radius-sm);
 		cursor: pointer;
 		transition:
 			opacity 0.2s ease,

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { reveal } from "$lib/actions/reveal";
+	import { Code2 } from "@lucide/svelte";
 
 	type ProjectPreview = {
 		type: "image" | "video";
@@ -15,6 +16,8 @@
 		detailedDescription: string;
 		tags: string[];
 		category: string;
+		context: string;
+		competencies: string[];
 		github?: string;
 		preview?: ProjectPreview;
 	};
@@ -23,44 +26,141 @@
 
 	const projects: Project[] = [
 		{
-			title: "Site E-commerce Full-stack",
-			date: "2025",
-			description:
-				"Plateforme e-commerce complète avec backend, base de données et logique métier. Gestion des produits, panier, commandes et paiement.",
-			detailedDescription:
-				"Projet de formation permettant de maîtriser les technologies fullstack. Implémentation d'une API REST avec Node.js et Express, utilisation de Medusajs pour la gestion e-commerce, base de données PostgreSQL, et frontend avec Svelte. Gestion de l'authentification, du panier, des commandes et de l'interface d'administration.",
-			tags: [
-				"Typescript",
-				"Node.js",
-				"Medusajs",
-				"PostgreSQL",
-				"Svelte",
-				"API REST",
+			title: "C# : Gestion des habilitations",
+			date: "2026",
+			description: "Module de contrôle d'accès utilisateur basé sur les rôles avec architecture MVC et MySQL.",
+			detailedDescription: "Développement d'un service d'habilitation pour une application d'entreprise. Implémentation d'une architecture MVC (Modèle-Vue-Contrôleur) avec connexion à une base de données MySQL. Gestion de l'authentification sécurisée, hachage des mots de passe et contrôle des droits d'accès.",
+			tags: ["C#", "Visual Studio", "MySQL", "MVC", "Sécurité"],
+			category: "DESKTOP",
+			context: "Scolaire (Atelier)",
+			competencies: [
+				"Gérer le patrimoine informatique (Mettre en place et vérifier les niveaux d'habilitation associés à un service - *compétence clé*)",
+				"Gérer le patrimoine informatique (Exploiter des référentiels, normes et standards - patron MVC, modélisation de données)",
+				"Répondre aux incidents et aux demandes d'assistance et d'évolution"
 			],
+			preview: {
+				type: "image",
+				src: "/projets/habilitations/image.png",
+				alt: "C# : Gestion des habilitations"
+			}
+		},
+		{
+			title: "PHP/JS : Site d'articles",
+			date: "2026",
+			description: "Interventions d'évolution, conformité RGPD et déploiement d'un site de présentation d'articles.",
+			detailedDescription: "Interventions sur un site responsive existant. Réalisation de corrections de bugs, mise en conformité réglementaire (bandeau cookies, mentions légales RGPD), optimisation pour le référencement naturel (SEO) et déploiement sur serveur d'hébergement.",
+			tags: ["PHP", "Netbeans", "HTML/CSS", "Javascript", "RGPD", "SEO"],
 			category: "WEB",
-			github: "https://github.com/M-Hnida/ecommerce",
+			context: "Scolaire (Atelier)",
+			competencies: [
+				"Développer la présence en ligne de l'organisation (Participer à la valorisation de l'image, conformité au cadre juridique et RGPD)",
+				"Développer la présence en ligne de l'organisation (Référencer les services en ligne et mesurer leur visibilité SEO)",
+				"Développer la présence en ligne de l'organisation (Participer à l'évolution d'un site Web exploitant les données)",
+				"Mettre à disposition des utilisateurs un service informatique (Déployer un service)"
+			],
+			preview: {
+				type: "image",
+				src: "/projets/articles/image.png",
+				alt: "PHP/JS : Site d'articles"
+			},
+			github: "https://github.com/M-Hnida/chocolatein"
+		},
+		{
+			title: "WordPress : Site E-commerce",
+			date: "2026",
+			description: "Création d'une boutique en ligne complète sous WordPress pour une organisation.",
+			detailedDescription: "Mise en place d'un CMS WordPress avec l'extension WooCommerce. Configuration du catalogue produits, intégration des solutions de paiement, gestion du panier et personnalisation du thème pour répondre aux besoins de l'organisation. Déploiement et mesure d'audience.",
+			tags: ["WordPress", "CMS", "WooCommerce", "E-commerce"],
+			category: "CMS",
+			context: "Scolaire (Atelier)",
+			competencies: [
+				"Développer la présence en ligne de l'organisation (Participer à l'évolution d'un site Web exploitant les données de l'organisation)",
+				"Mettre à disposition des utilisateurs un service informatique (Déployer un service, accompagner les utilisateurs dans la prise en main)",
+				"Gérer le patrimoine informatique (Vérifier le respect des règles d'utilisation des ressources numériques)"
+			],
+			preview: {
+				type: "image",
+				src: "/projets/wordpress/image.png",
+				alt: "WordPress : Site E-commerce"
+			},
+			github: "https://github.com/M-Hnida/centredeformationinformatique"
+		},
+		{
+			title: "Java : Jeu de combat 2D Client/Serveur",
+			date: "2025",
+			description: "Jeu multijoueur synchrone avec interface graphique Swing et communication par Sockets.",
+			detailedDescription: "Conception et programmation d'un jeu de combat 2D en réseau. Implémentation d'une architecture Client/Serveur multithreadée utilisant les Sockets Java. Interface graphique développée avec Swing, respectant le pattern MVC pour séparer la logique de jeu de l'affichage en temps réel.",
+			tags: ["Java", "Eclipse", "Sockets", "Swing", "Multithreading", "Client-Serveur"],
+			category: "JEU/RESEAU",
+			context: "Scolaire (Atelier)",
+			competencies: [
+				"Gérer le patrimoine informatique (Exploiter des référentiels, normes et standards - patrons d'architecture, protocole réseau)",
+				"Répondre aux incidents et aux demandes d'assistance (Traiter des demandes concernant les services réseau et système, applicatifs)",
+				"Mettre à disposition des utilisateurs un service informatique (Réaliser les tests d'intégration et d'acceptation du service)"
+			],
+			preview: {
+				type: "image",
+				src: "/projets/jeu/image.png",
+				alt: "Java : Jeu de combat 2D Client/Serveur"
+			}
+		},
+		{
+			title: "Site E-commerce Full-stack",
+			date: "2026",
+			description: "Plateforme e-commerce moderne avec MedusaJS, SvelteKit et PostgreSQL.",
+			detailedDescription: "Projet personnel d'apprentissage avancé. Création d'un site e-commerce moderne en architecture headless. Utilisation de MedusaJS pour le moteur backend e-commerce, PostgreSQL pour la base de données relationnelle et SvelteKit pour une interface utilisateur rapide, animée et optimisée.",
+			tags: ["Typescript", "MedusaJS", "PostgreSQL", "SvelteKit", "API REST"],
+			category: "WEB",
+			context: "Personnel",
+			competencies: [
+				"Développer la présence en ligne de l'organisation (Participer à l'évolution d'un site Web exploitant les données)",
+				"Mettre à disposition des utilisateurs un service informatique (Réaliser les tests d'intégration et d'acceptation, Déployer un service)",
+				"Travailler en mode projet (Planifier les activités, évaluer le suivi du projet)"
+			],
+			preview: {
+				type: "image",
+				src: "/projets/ecommerce/image.png",
+				alt: "Site E-commerce Full-stack"
+			}
 		},
 		{
 			title: "Bot Discord Automation",
 			date: "2024",
-			description:
-				"Bot Discord automatisé avec commandes personnalisées, gestion d'événements et architecture modulaire. Gestion de serveur complète.",
-			detailedDescription:
-				"Bot Discord développé en Python utilisant la bibliothèque discord.py. Implémentation de commandes slash, système de modération automatique, gestion des rôles et permissions, système de logs et d'événements. Architecture modulaire permettant une extension facile des fonctionnalités.",
-			tags: ["Python", "Discord API", "Asyncio"],
+			description: "Bot de modération et d'automatisation de serveur Discord développé en Python.",
+			detailedDescription: "Bot Discord développé en Python à l'aide de la bibliothèque discord.py. Intègre des commandes slash interactives, un système de modération automatique, la gestion automatisée des rôles et des salons, ainsi que la journalisation des événements du serveur.",
+			tags: ["Python", "PyCharm", "Discord API", "Asyncio"],
 			category: "AUTOMATION",
+			context: "Personnel",
+			competencies: [
+				"Répondre aux incidents et aux demandes d'assistance et d'évolution (Traiter des demandes concernant les applications)",
+				"Mettre à disposition des utilisateurs un service informatique (Accompagner les utilisateurs dans la mise en place du service)"
+			],
 			github: "https://github.com/M-Hnida/discord-bot",
+			preview: {
+				type: "image",
+				src: "/projets/discord/image.png",
+				alt: "Bot Discord Automation"
+			}
 		},
 		{
 			title: "Backtesting Trading Algorithmique",
-			date: "2024",
-			description:
-				"Système de backtesting pour stratégies de trading sur données financières. Optimisation et visualisation des performances.",
-			detailedDescription:
-				"Outil de backtesting développé en Python permettant de tester des stratégies de trading sur des données historiques. Utilisation de Vectorbt et NautilusTrader pour l'analyse, Pandas et NumPy pour le traitement des données, Matplotlib et Plotly pour la visualisation. Implémentation de multiples stratégies et optimisation des paramètres.",
+			date: "2025",
+			description: "Moteur de simulation de stratégies de trading en Python avec visualisation interactive.",
+			detailedDescription: "Outil de recherche quantitative et de backtesting développé en Python. Utilise le framework NautilusTrader pour la simulation d'ordres en temps historique, Pandas et NumPy pour la manipulation de gros volumes de données financières, et Plotly pour générer des rapports de performance interactifs.",
 			tags: ["Python", "NautilusTrader", "Pandas", "NumPy", "Plotly"],
 			category: "DATA",
+			context: "Personnel / Recherche",
+			competencies: [
+				"Organiser son développement professionnel (Mettre en place son environnement d'apprentissage personnel, auto-formation sur la data science)",
+				"Gérer le patrimoine informatique (Exploiter des référentiels, normes et standards de traitement de données)"
+			],
 			github: "https://github.com/M-Hnida/trading-backtest",
+			preview: {
+				type: "video",
+				src: "/projets/backtest/nauttrader.mp4",
+				poster: "/projets/backtest/image.png",
+				alt: "Backtesting Trading Algorithmique",
+			},
 		},
 	];
 
@@ -77,12 +177,11 @@
 	}
 </script>
 
-<section id="projects" class="projects">
-	<div class="container">
-		<h2 class="title">
-			Projets <span class="accent">Personnels</span>
-		</h2>
-		<div class="grid">
+<section id="projects" class="section-card">
+	<h2 class="section-title">
+		Projets & <span class="accent">Réalisations</span>
+	</h2>
+	<div class="grid">
 			{#each projects as p, i}
 				<article
 					class="card"
@@ -127,7 +226,10 @@
 							</div>
 						</div>
 						<div class="card-content">
-							<span class="date">{p.date}</span>
+							<div class="card-meta">
+								<span class="date">{p.date}</span>
+								<span class="context-tag" class:context-scolaire={p.context.includes("Scolaire")} class:context-stage={p.context.includes("Stage")} class:context-perso={p.context.includes("Personnel")}>{p.context}</span>
+							</div>
 							<h3 class="card-title">{p.title}</h3>
 							<p class="card-desc">{p.description}</p>
 							<div class="tags">
@@ -173,19 +275,33 @@
 							>
 							<h3>{activeProject.title}</h3>
 							<p>
-								Ajoute ici un GIF, une image ou une courte vidéo
-								pour montrer rapidement le projet.
+								Cadre : {activeProject.context}
 							</p>
 						</div>
 					{/if}
 				</div>
 
 				<div class="details-copy">
-					<span class="date">{activeProject.date}</span>
+					<div class="details-meta-header">
+						<span class="date">{activeProject.date}</span>
+						<span class="context-tag active-context" class:context-scolaire={activeProject.context.includes("Scolaire")} class:context-stage={activeProject.context.includes("Stage")} class:context-perso={activeProject.context.includes("Personnel")}>{activeProject.context}</span>
+					</div>
 					<h3 class="panel-title">{activeProject.title}</h3>
 					<p class="detailed-desc">
 						{activeProject.detailedDescription}
 					</p>
+
+					{#if activeProject.competencies && activeProject.competencies.length > 0}
+						<div class="competencies-section">
+							<h4>Compétences BTS SIO Bloc 1</h4>
+							<ul class="competencies-list">
+								{#each activeProject.competencies as comp}
+									<li>{comp}</li>
+								{/each}
+							</ul>
+						</div>
+					{/if}
+
 					<div class="tags panel-tags">
 						{#each activeProject.tags as tag}
 							<span class="tag">{tag}</span>
@@ -199,18 +315,18 @@
 								rel="noopener noreferrer"
 								class="github-link"
 							>
-								<svg
-									viewBox="0 0 24 24"
-									fill="currentColor"
-									width="20"
-									height="20"
-								>
-									<path
-										d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-									/>
-								</svg>
+								<Code2 size={20} />
 								Voir sur GitHub
 							</a>
+						{:else}
+							<button
+								class="github-link disabled"
+								disabled
+								aria-disabled="true"
+							>
+								<Code2 size={20} />
+								Code Privé
+							</button>
 						{/if}
 						<button
 							class="close-btn"
@@ -223,31 +339,19 @@
 				</div>
 			</article>
 		{/if}
-	</div>
 </section>
 
 <style>
-	.projects {
-		padding: 4rem 0;
-		background-color: var(--color-background);
-	}
-
-	.container {
-		max-width: 80rem;
-		margin: 0 auto;
-		padding: 0 1.5rem;
-	}
-
-	.title {
+	.section-title {
 		font-family: var(--font-heading);
-		font-size: clamp(1.75rem, 4vw, 2.5rem);
-		text-align: center;
-		margin-bottom: 3rem;
+		font-size: 1.75rem;
+		margin-bottom: 2rem;
 		color: var(--color-text);
+		font-weight: 600;
 	}
 
 	.accent {
-		color: #c0c0c0;
+		color: var(--color-primary);
 	}
 
 	.grid {
@@ -259,7 +363,7 @@
 	.card {
 		background-color: var(--color-surface);
 		border: 1px solid var(--color-border);
-		border-radius: 0.5rem;
+		border-radius: var(--radius-md);
 		overflow: hidden;
 		transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 		position: relative;
@@ -343,7 +447,7 @@
 		letter-spacing: 0.1em;
 		background: rgba(212, 168, 83, 0.1);
 		padding: 0.25rem 0.5rem;
-		border-radius: 0.25rem;
+		border-radius: var(--radius-sm);
 	}
 
 	.card-content {
@@ -353,11 +457,45 @@
 		flex: 1;
 	}
 
+	.card-meta {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 0.75rem;
+	}
+
 	.date {
 		font-size: 0.75rem;
 		color: var(--color-text-subtle);
 		display: block;
-		margin-bottom: 0.5rem;
+	}
+
+	.context-tag {
+		font-size: 0.7rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		padding: 0.15rem 0.4rem;
+		border-radius: var(--radius-sm);
+		font-weight: 500;
+		border: 1px solid transparent;
+	}
+
+	.context-scolaire {
+		background: rgba(100, 150, 235, 0.1);
+		color: #8baffc;
+		border-color: rgba(100, 150, 235, 0.2);
+	}
+
+	.context-stage {
+		background: rgba(235, 120, 90, 0.1);
+		color: #fc9f8b;
+		border-color: rgba(235, 120, 90, 0.2);
+	}
+
+	.context-perso {
+		background: rgba(76, 175, 80, 0.1);
+		color: #81c784;
+		border-color: rgba(76, 175, 80, 0.2);
 	}
 
 	.card-title {
@@ -393,14 +531,14 @@
 		color: var(--color-text-subtle);
 		border: 1px solid var(--color-border);
 		padding: 0.25rem 0.5rem;
-		border-radius: 0.25rem;
+		border-radius: var(--radius-sm);
 	}
 
 	.details-panel {
 		margin-top: 1.5rem;
 		background: var(--color-surface);
 		border: 1px solid var(--color-border);
-		border-radius: 0.75rem;
+		border-radius: var(--radius-lg);
 		overflow: hidden;
 		display: grid;
 		grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
@@ -458,6 +596,17 @@
 		gap: 1rem;
 	}
 
+	.details-meta-header {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.active-context {
+		font-size: 0.75rem;
+		padding: 0.25rem 0.6rem;
+	}
+
 	.panel-title {
 		font-family: var(--font-heading);
 		font-size: clamp(1.4rem, 2.5vw, 1.8rem);
@@ -472,7 +621,48 @@
 		color: var(--color-text-muted);
 		font-size: 0.9375rem;
 		line-height: 1.6;
-		margin-bottom: 1rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.competencies-section {
+		margin-top: 0.5rem;
+		border-top: 1px solid var(--color-border);
+		padding-top: 1rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.competencies-section h4 {
+		font-family: var(--font-heading);
+		font-size: 0.85rem;
+		color: var(--color-text);
+		margin-bottom: 0.5rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.competencies-list {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+
+	.competencies-list li {
+		font-size: 0.85rem;
+		color: var(--color-text-muted);
+		display: flex;
+		align-items: flex-start;
+		line-height: 1.4;
+	}
+
+	.competencies-list li::before {
+		content: "✦";
+		color: var(--color-primary);
+		margin-right: 0.5rem;
+		font-size: 0.75rem;
+		margin-top: 0.15rem;
 	}
 
 	.github-link {
@@ -489,6 +679,19 @@
 		color: var(--color-primary);
 	}
 
+	.github-link.disabled {
+		opacity: 0.4;
+		cursor: not-allowed;
+		background: none;
+		border: none;
+		padding: 0;
+		font-family: inherit;
+	}
+
+	.github-link.disabled:hover {
+		color: var(--color-text);
+	}
+
 	.panel-actions {
 		display: flex;
 		gap: 0.75rem;
@@ -503,7 +706,7 @@
 		padding: 0.5rem 1rem;
 		font-size: 0.8125rem;
 		cursor: pointer;
-		border-radius: 0.25rem;
+		border-radius: var(--radius-sm);
 		transition: all 0.2s ease;
 	}
 
