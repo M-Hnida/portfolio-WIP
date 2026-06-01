@@ -124,9 +124,6 @@
 					<a href="https://github.com/M-Hnida/mediatek" target="_blank" rel="noopener noreferrer" class="strip-btn highlight">
 						<Code2 size={15} /> GitHub
 					</a>
-					<a href="/projets/mediatek86/compte-rendu.pdf" target="_blank" class="strip-btn">
-						<FileText size={15} /> Rapport (PDF)
-					</a>
 					<a href="/projets/mediatek86/mediatek86.sql" download class="strip-btn">
 						<Database size={15} /> Script SQL
 					</a>
