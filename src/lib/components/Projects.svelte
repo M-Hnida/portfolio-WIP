@@ -20,11 +20,35 @@
 		competencies: string[];
 		github?: string;
 		preview?: ProjectPreview;
+		projectPage?: string;
 	};
 
 	let selectedProject: number | null = null;
 
 	const projects: Project[] = [
+		{
+			title: "C# : Gestion du Personnel MediaTek86",
+			date: "2026",
+			description: "Application lourde Windows Forms de gestion du personnel et des absences connectée à MySQL.",
+			detailedDescription: "Conception et développement d'une application monoposte MVC pour le réseau des médiathèques de la Vienne. Permet la gestion complète (CRUD) des membres du personnel et de leurs absences. Intègre un algorithme de détection de chevauchement de dates d'absences, un système de connexion sécurisé (SHA-256) et une architecture en couches robuste (MVC, DAL, BddManager).",
+			tags: ["C#", "WinForms", "MySQL", "MVC", "SHA-256", "Sandcastle"],
+			category: "DESKTOP",
+			context: "Scolaire (Atelier)",
+			competencies: [
+				"Gérer le patrimoine informatique (Exploiter des référentiels, normes et standards - patron MVC, singleton BddManager)",
+				"Gérer le patrimoine informatique (Mettre en place et vérifier les niveaux d'habilitation - authentification RH)",
+				"Mettre à disposition des utilisateurs un service informatique (Réaliser les tests d'intégration et d'acceptation du service)",
+				"Mettre à disposition des utilisateurs un service informatique (Déployer un service - installeur MSI, script SQL)",
+				"Mettre à disposition des utilisateurs un service informatique (Accompagner les utilisateurs - vidéo de documentation)"
+			],
+			preview: {
+				type: "image",
+				src: "/projets/mediatek86/images/frmGestion.png",
+				alt: "Démo C# : Gestion du Personnel MediaTek86"
+			},
+			github: "https://github.com/M-Hnida/mediatek",
+			projectPage: "/mediatek86"
+		},
 		{
 			title: "C# : Gestion des habilitations",
 			date: "2026",
@@ -327,6 +351,14 @@
 								<Code2 size={20} />
 								Code Privé
 							</button>
+						{/if}
+						{#if activeProject.projectPage}
+							<a
+								href={activeProject.projectPage}
+								class="project-page-cta"
+							>
+								Consulter la Mission
+							</a>
 						{/if}
 						<button
 							class="close-btn"
@@ -713,5 +745,25 @@
 	.close-btn:hover {
 		border-color: var(--color-text-subtle);
 		color: var(--color-text);
+	}
+
+	.project-page-cta {
+		background: var(--color-primary);
+		color: var(--color-background);
+		padding: 0.5rem 1rem;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		text-decoration: none;
+		border-radius: var(--radius-sm);
+		transition: all 0.2s ease;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.project-page-cta:hover {
+		background: var(--color-primary-hover);
+		transform: translateY(-1px);
+		box-shadow: 0 4px 12px rgba(212, 168, 83, 0.2);
 	}
 </style>

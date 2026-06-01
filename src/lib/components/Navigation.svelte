@@ -9,6 +9,7 @@
 		{ href: "/#projects", label: "Projets", icon: Briefcase },
 		{ href: "/#skills", label: "Compétences", icon: Zap },
 		{ href: "/veille", label: "Veille", icon: Globe, isExternal: true },
+		{ href: "/mediatek86", label: "MediaTek86", icon: Code2, isExternal: true },
 		{ href: "/#contact", label: "Contact", icon: Mail }
 	];
 
